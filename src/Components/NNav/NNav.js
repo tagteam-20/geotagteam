@@ -7,11 +7,12 @@ class NNav extends Component {
     render() {
         return (
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Navbar.Brand>&#x1F48E; Hidden Gems</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">
-                    <Link to='/map'>Features</Link>
-                    <Link to='/user'>Pricing</Link>
+                    <Link to='/map'>Map</Link>
+                    <Link to='/user'>User</Link>
                     <Button>Logout</Button>
                 </Nav>
             </Navbar.Collapse>
