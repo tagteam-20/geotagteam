@@ -11,7 +11,7 @@ class Auth extends Component {
         this.state = {
             username: '',
             password: '',
-            registerToggle: 0
+            registerToggle: false
         }
     }
     //function registers user
@@ -34,8 +34,9 @@ class Auth extends Component {
             })
     }
 
-    registerView = () => {
-        this.setState({registerToggle: this.state.registerToggle + 1})
+    toggleView = () => {
+        this.setState({registerToggle: !this.state.registerToggle})
+        console.log(this.state.registerToggle)
     }
     //function updates state of input boxes on change
     handleInput = (event) => {
@@ -46,14 +47,14 @@ class Auth extends Component {
         console.log(this.state);
         return (
             <div>
-                {this.state.registerToggle === 0? <div>
+                {this.state.registerToggle === false? <div>
                     <input name='username' placeholder='username' onChange={this.handleInput} />
                     <input name='password' placeholder='password' type='password' onChange={this.handleInput} />
                     <div>
                         <button onClick={this.loginUser}>Login</button>
-                        <button onClick={this.registerView}>Register</button>
+                        <button onClick={this.toggleView}>Register</button>
                     </div>
-                </div> : <RegisterForm/>}
+                </div> : <RegisterForm toggleView={this.toggleView}/>}
             </div>
             
 
