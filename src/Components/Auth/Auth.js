@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import { connect } from 'react-redux';
 
 class Auth extends Component {
     constructor() {
@@ -48,5 +49,6 @@ class Auth extends Component {
         )
     }
 }
-
+// const mapMyStateToProps = reduxState => reduxState;
+// export default connect(mapMyStateToProps)(Auth);
 export default Auth;
