@@ -40,7 +40,7 @@ class Auth extends Component {
                 <input name='username' placeholder='username' onChange={this.handleInput} />
                 <input name='password' placeholder='password' onChange={this.handleInput} />
                 <div>
-                    <button onClick={}>Login</button>
+                    <button>Login</button>
                     <button>Register</button>
                 </div>
             </div>
