@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {withRouter, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {Navbar, Button} from 'react-bootstrap';
+import {Navbar, Button, Nav} from 'react-bootstrap';
 
-class Nav extends Component {
+class NNav extends Component {
     render() {
         return (
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -22,4 +22,4 @@ class Nav extends Component {
 
 const mapStateToProps = reduxState => reduxState;
 
-export default connect(mapStateToProps)(withRouter(Nav))
+export default connect(mapStateToProps)(withRouter(NNav))
