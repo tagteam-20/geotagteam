@@ -6,12 +6,19 @@ import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
 import {HashRouter} from 'react-router-dom';
 import store from './ducks/store';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
+
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <HashRouter>
-        <App />
+        <HelmetProvider>
+          <Helmet>
+            <title>Hidden Gems</title>
+          </Helmet>
+          <App />
+        </HelmetProvider>
       </HashRouter>
     </Provider>
   </React.StrictMode>,
