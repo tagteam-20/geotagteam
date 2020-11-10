@@ -3,12 +3,16 @@ import {withRouter, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Navbar, Button, Nav} from 'react-bootstrap';
 import axios from 'axios';
+import {clearUser} from '../../ducks/reducer';
 
 class NNav extends Component {
     logout = () =>{
         axios.get('/api/logout')
-            .then(
-
+            .then(res => {
+                this.props.clearUser();
+                console.log(this.props.user);
+                this.props.history.push('/')
+            }
             )
             .catch(err => console.log(err))
     }
@@ -32,4 +36,4 @@ class NNav extends Component {
 
 const mapStateToProps = reduxState => reduxState;
 
-export default connect(mapStateToProps)(withRouter(NNav))
+export default connect(mapStateToProps, {clearUser})(withRouter(NNav))
