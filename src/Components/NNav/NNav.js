@@ -2,8 +2,21 @@ import React, { Component } from 'react';
 import {withRouter, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Navbar, Button, Nav} from 'react-bootstrap';
+import axios from 'axios';
+import {clearUser} from '../../ducks/reducer';
 
 class NNav extends Component {
+    logout = () =>{
+        axios.get('/api/logout')
+            .then(res => {
+                this.props.clearUser();
+                console.log(this.props.user);
+                this.props.history.push('/')
+            }
+            )
+            .catch(err => console.log(err))
+    }
+    
     render() {
         return (
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -13,7 +26,7 @@ class NNav extends Component {
                 <Nav className="mr-auto">
                     <Link to='/map'>Map</Link>
                     <Link to='/user'>User</Link>
-                    <Button>Logout</Button>
+                    <Button onClick={this.logout}>Logout</Button>
                 </Nav>
             </Navbar.Collapse>
             </Navbar>
@@ -23,4 +36,4 @@ class NNav extends Component {
 
 const mapStateToProps = reduxState => reduxState;
 
-export default connect(mapStateToProps)(withRouter(NNav))
+export default connect(mapStateToProps, {clearUser})(withRouter(NNav))
