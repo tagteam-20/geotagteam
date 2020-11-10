@@ -2,8 +2,17 @@ import React, { Component } from 'react';
 import {withRouter, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Navbar, Button, Nav} from 'react-bootstrap';
+import axios from 'axios';
 
 class NNav extends Component {
+    logout = () =>{
+        axios.get('/api/logout')
+            .then(
+
+            )
+            .catch(err => console.log(err))
+    }
+    
     render() {
         return (
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -13,7 +22,7 @@ class NNav extends Component {
                 <Nav className="mr-auto">
                     <Link to='/map'>Map</Link>
                     <Link to='/user'>User</Link>
-                    <Button>Logout</Button>
+                    <Button onClick={this.logout}>Logout</Button>
                 </Nav>
             </Navbar.Collapse>
             </Navbar>
