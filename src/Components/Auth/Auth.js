@@ -49,6 +49,6 @@ class Auth extends Component {
         )
     }
 }
-// const mapMyStateToProps = reduxState => reduxState;
-// export default connect(mapMyStateToProps)(Auth);
-export default Auth;
+const mapMyStateToProps = reduxState => reduxState;
+export default connect(mapMyStateToProps)(Auth);
+// export default Auth;
