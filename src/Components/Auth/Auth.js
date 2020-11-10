@@ -48,7 +48,7 @@ class Auth extends Component {
             <div>
                 {this.state.registerToggle === 0? <div>
                     <input name='username' placeholder='username' onChange={this.handleInput} />
-                    <input name='password' placeholder='password' onChange={this.handleInput} />
+                    <input name='password' placeholder='password' type='password' onChange={this.handleInput} />
                     <div>
                         <button onClick={this.loginUser}>Login</button>
                         <button onClick={this.registerView}>Register</button>
