@@ -1,9 +1,11 @@
 INSERT INTO gem_user(
     username,
-    password
+    password,
+    profile_pic
 )VALUES(
     $(username),
-    ${hash}
+    ${hash},
+    ${profile_pic}
 );
 
 SELECT username FROM gem_user
