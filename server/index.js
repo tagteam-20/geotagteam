@@ -6,7 +6,8 @@ const express = require('express'),
     session = require('express-session'),
     {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env,
     app = express(),
-    authCont = require('./controllers/auth');
+    authCont = require('./controllers/auth'),
+    path = require('path');
 
 app.use(express.json());
 
@@ -21,7 +22,7 @@ app.use(session({
 //Endpoints =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 //Auth
-app.post('/api/register', authCont.register); //Register
+app.post('/api/register', upload.single('image'), authCont.register); //Register
 app.post('/api/login', authCont.login); //Login
 app.get('/api/session', authCont.getSession); //Get session
 app.get('/api/logout', authCont.logout); //Logout
