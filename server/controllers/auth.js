@@ -53,6 +53,7 @@ module.exports = {
         if(foundUser[0])
             return res.status(400).send('Username already in use');
 
+        console.log(req.file);
         //Image handling
         if(req.file){
             const currentTime = new Date().getTime();
