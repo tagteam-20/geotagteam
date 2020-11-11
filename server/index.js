@@ -32,6 +32,7 @@ app.get('/api/logout', authCont.logout); //Logout
 //Pins
 app.post('/api/pin', upload.single('image'), authMiddle.loggedIn, pinCont.newPin); //Post a new pin
 app.get('/api/pins', pinCont.getAll); //Get all pins
+app.get('/api/pin/:id', pinCont.getSingle); //Get a single pin
 
 //Send react app -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 app.use(express.static(__dirname +'/../build'));
