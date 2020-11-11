@@ -29,14 +29,14 @@ class User extends Component {
                     <Accordion >
                     <Card id='user-card'>
                         <Card.Header>
-                            <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                            <Accordion.Toggle as={Button} variant="outline-primary" eventKey="0">
                                 {el.title}
                             </Accordion.Toggle>
                         </Card.Header>
                         <Accordion.Collapse eventKey="0">
                             <div className='single-pin'>
                                 <img src={el.img} />
-                                <Button>See More</Button>
+                                <Button variant="outline-primary">See More</Button>
                             </div>
                         </Accordion.Collapse>
                     </Card>

@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {Navbar, Button, Nav} from 'react-bootstrap';
 import axios from 'axios';
 import {clearUser} from '../../ducks/reducer';
+import './NNav.scss';
 
 class NNav extends Component {
     logout = () =>{
@@ -23,9 +24,9 @@ class NNav extends Component {
             <Navbar.Brand>&#x1F48E; Hidden Gems</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className="mr-auto">
-                    <Link to='/map'>Map</Link>
-                    <Link to='/user'>User</Link>
+                <Nav>
+                    <Link href='/#/map'>Map</Link>
+                    <Link to='/#/user'>User</Link>
                     <Button onClick={this.logout}>Logout</Button>
                 </Nav>
             </Navbar.Collapse>
