@@ -24,10 +24,10 @@ class NNav extends Component {
             <Navbar.Brand>&#x1F48E; Hidden Gems</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav>
-                    <Link href='/#/map'>Map</Link>
-                    <Link to='/#/user'>User</Link>
-                    <Button onClick={this.logout}>Logout</Button>
+                <Nav className="justify-content-end" style={{ width: "100%" }}>
+                    <Nav.Link as={Link} to="/map" >Map</Nav.Link>
+                    <Nav.Link as={Link} to="/user" >User</Nav.Link>
+                    <Button className='nav-button' onClick={this.logout}>Logout</Button>
                 </Nav>
             </Navbar.Collapse>
             </Navbar>
