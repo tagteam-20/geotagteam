@@ -58,9 +58,11 @@ class Auth extends Component {
                     //         <button onClick={this.registerView}>Register</button>
                     //     </div>
                     // </div> 
-                    <Card border='dark' style={{ width: '18rem' }} className='auth-box'>
+                    <Card border='dark' style={{ width: '18rem' }}  id='trans-background' className='auth-box'>
                         <Card.Body className='auth-box-body'>
+                            <h5>Username</h5>
                             <input name='username' placeholder='username' onChange={this.handleInput} />
+                            <h5>Password</h5>
                             <input name='password' placeholder='password' type='password' onChange={this.handleInput} />
                             <div className='auth-buttons'>
                                 <Button variant="primary" onClick={this.loginUser}>Login</Button>

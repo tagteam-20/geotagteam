@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import { Button, Form, FormGroup, Container, Card } from 'react-bootstrap';
+import './RegisterForm.scss';
 
 function RegisterForm(props){
     const [image, setImage] = useState({}),
@@ -23,7 +24,7 @@ function RegisterForm(props){
 
     return(
         <Container>
-            <Card>
+            <Card id='register-card'>
                 <Card.Header>Register</Card.Header>
                 <Card.Body>
                 <Form onSubmit={submitForm}>
