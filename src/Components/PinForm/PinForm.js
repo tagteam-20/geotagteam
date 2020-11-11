@@ -1,16 +1,40 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import { Button, Form, FormGroup, Container, Card, Col } from 'react-bootstrap';
+import { Button, Form, FormGroup, Container, Card, Col, Alert } from 'react-bootstrap';
 
 const PinForm = (props)=>{
     const [y,setY] = useState(0.0),
         [x,setX] = useState(0.0),
         [image,setImage] = useState({}),
         [description, setDesc] = useState(''),
-        [title, setTitle] = useState('');
+        [title, setTitle] = useState(''),
+        [error, setError] = useState({bool: false, message: ''});
     
+    const submitForm = (e)=>{
+        e.preventDefault();
+        const fd = new FormData();
+        fd.append('image', image, image.name);
+        fd.append('y', y);
+        fd.append('x',x);
+        fd.append('description',description);
+        fd.append('title', title);
+        axios.post('/api/pin', fd)
+            .then(res=>{
+                console.log(res.data);
+            }).catch(err=>{
+                setError({bool: true, message: err.response.data});
+            })
+    }
+
+    const err = (
+        <Alert variant='danger'>
+            <Alert.Heading>Error:</Alert.Heading>
+            <p>{error.message}</p>
+        </Alert>
+    )
     return (
-        <Form>
+        <Form onSubmit={submitForm}>
+            {error.bool ? err : null}
             <Form.Row>
                 <Form.Group as={Col} id='title'>
                     <Form.Label htmlFor='title'>Title: </Form.Label>
@@ -23,9 +47,22 @@ const PinForm = (props)=>{
             </Form.Row>
             <Form.Row>
                 <Form.Group as={Col} id='x'>
-                    <Form.Label htmlFor='x'>X:</Form.Label>
-                    <Form.Control type='text' name='x'></Form.Control>
+                    <Form.Label htmlFor='x'>Long:</Form.Label>
+                    <Form.Control type='number' step='any' name='x' value={x} onChange={e=>setX(e.target.value)}/>
                 </Form.Group>
+                <Form.Group as={Col} id='y'>
+                    <Form.Label htmlFor='y'>Lat:</Form.Label>
+                    <Form.Control type='number' step='any' name='y' value={y} onChange={e=>setY(e.target.value)}/>
+                </Form.Group>
+            </Form.Row>
+            <Form.Row>
+                <Form.Group as={Col} id='desc'>
+                    <Form.Label>Description: </Form.Label>
+                    <Form.Control as='textarea' rows={4} value={description} onChange={e=>setDesc(e.target.value)}/>
+                </Form.Group>
+            </Form.Row>
+            <Form.Row>
+                <Button variant='outline-success' type='submit'>Submit</Button>
             </Form.Row>
         </Form>
     )
