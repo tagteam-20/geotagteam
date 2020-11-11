@@ -7,7 +7,7 @@ INSERT INTO gem_pin(
     author
 )VALUES(
     ${lat},
-    ${long},
+    ${lng},
     ${img},
     ${description},
     ${title},
