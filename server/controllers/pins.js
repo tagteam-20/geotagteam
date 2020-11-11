@@ -67,5 +67,11 @@ module.exports = {
         const db = req.app.get('db');
         const all = await db.get_all();
         res.status(200).send(all);
+    },
+    getSingle: async(req,res)=>{
+        const id = req.params.id;
+        const db = req.app.get('db');
+        const pin = await db.get_single_pin({id});
+        res.status(200).send(pin[0]);
     }
 }
