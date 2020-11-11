@@ -148,5 +148,29 @@ module.exports = {
         }
       }
     });
+  },
+  getSingle: function getSingle(req, res) {
+    var id, db, pin;
+    return regeneratorRuntime.async(function getSingle$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            id = req.params.id;
+            db = req.app.get('db');
+            _context4.next = 4;
+            return regeneratorRuntime.awrap(db.get_single_pin({
+              id: id
+            }));
+
+          case 4:
+            pin = _context4.sent;
+            res.status(200).send(pin[0]);
+
+          case 6:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    });
   }
 };
