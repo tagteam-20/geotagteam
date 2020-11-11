@@ -8,5 +8,5 @@ INSERT INTO gem_user(
     ${profile_pic}
 );
 
-SELECT username FROM gem_user
+SELECT username, id FROM gem_user
 WHERE username = ${username};
