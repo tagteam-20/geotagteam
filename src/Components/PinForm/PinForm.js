@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import { Button, Form, FormGroup, Container, Card, Col, Alert } from 'react-bootstrap';
+import { Button, Form, Col, Alert } from 'react-bootstrap';
 
 const PinForm = (props)=>{
     const [y,setY] = useState(0.0),
@@ -9,7 +9,15 @@ const PinForm = (props)=>{
         [description, setDesc] = useState(''),
         [title, setTitle] = useState(''),
         [error, setError] = useState({bool: false, message: ''});
+
     
+    useEffect(()=>{
+        if(props.y)
+            setY(props.y);
+        if(props.x)
+            setX(props.x);
+    }, [props.y,props.x]);
+
     const submitForm = (e)=>{
         e.preventDefault();
         const fd = new FormData();
