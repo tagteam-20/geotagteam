@@ -4,6 +4,7 @@ import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocom
 import { Combobox, ComboboxInput, ComboboxPopover, ComboboxList, ComboboxOption } from '@reach/combobox';
 import mapStyles from './mapStyles';
 import axios from 'axios';
+import './Map.css';
 
 const libraries = ['places'];
 const mapContainerStyle = {
@@ -80,7 +81,7 @@ export default function Map() {
     console.log('selected', selected);
 
     return (
-        <div>
+        <div id='map'>
             <Search panTo={panTo} />
             <Locate panTo={panTo} />
             <GoogleMap
@@ -178,8 +179,9 @@ function Search({ panTo }) {
                     }
                 }}
             >
-                <ComboboxInput
+                <ComboboxInput 
                     value={value}
+                    id='searchbar' 
                     onChange={(e) => {
                         setValue(e.target.value);
                     }}
