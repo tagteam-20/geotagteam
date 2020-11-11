@@ -42,7 +42,7 @@ export default function Map() {
     }, [])
 
     const onMapClick = React.useCallback((event) => {
-        setMarkers(current => [...allPins, {
+        setMarkers(current => [{
             lat: event.latLng.lat(),
             lng: event.latLng.lng(),
             time: new Date(),
@@ -63,18 +63,21 @@ export default function Map() {
     if(!isLoaded) return "Loading Maps";
 
     const mappedPins = allPins.map((pin,ind) => { 
-        //console.log(pin.x);
+        console.log('pin',pin);
         return  <Marker 
                     key={ind}
-                    position={{ lat: +pin.y, lng: +pin.x }}
+                    position={{ lat: +pin.lat, lng: +pin.lng }}
                     icon={{
                         url: "/gem.png",
                         scaledSize: new window.google.maps.Size(20, 20),
                         origin: new window.google.maps.Point(0, 0),
                         anchor: new window.google.maps.Point(10, 10),
+                    }}
+                    onClick={() => {
+                        setSelected(pin);
                     }}/>
     })
-    //console.log(mappedPins);
+    console.log('selected',selected);
 
     return (
         <div>
