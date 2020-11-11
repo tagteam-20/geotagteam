@@ -12,7 +12,7 @@ class Auth extends Component {
         this.state = {
             username: '',
             password: '',
-            registerToggle: 0
+            registerToggle: false
         }
     }
     //function registers user
@@ -35,8 +35,10 @@ class Auth extends Component {
             })
     }
 
-    registerView = () => {
-        this.setState({ registerToggle: this.state.registerToggle + 1 })
+
+    toggleView = () => {
+        this.setState({registerToggle: !this.state.registerToggle})
+        console.log(this.state.registerToggle)
     }
     //function updates state of input boxes on change
     handleInput = (event) => {
@@ -66,7 +68,7 @@ class Auth extends Component {
                             </div>
                         </Card.Body>
                     </Card>
-                    : <RegisterForm />}
+                    : <RegisterForm toggleView={this.toggleView}/>}
             </div>
 
 
