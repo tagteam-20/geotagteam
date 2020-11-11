@@ -49,7 +49,7 @@ class Auth extends Component {
         console.log(this.state);
         return (
             <div className='auth-main'>
-                {this.state.registerToggle === 0 ?
+                {!this.state.registerToggle ?
                     // <div>
                     //     <input name='username' placeholder='username' onChange={this.handleInput} />
                     //     <input name='password' placeholder='password' type='password' onChange={this.handleInput} />
@@ -64,7 +64,7 @@ class Auth extends Component {
                             <input name='password' placeholder='password' type='password' onChange={this.handleInput} />
                             <div className='auth-buttons'>
                                 <Button variant="primary" onClick={this.loginUser}>Login</Button>
-                                <Button variant="primary" onClick={this.registerView}>Register</Button>
+                                <Button variant="primary" onClick={this.toggleView}>Register</Button>
                             </div>
                         </Card.Body>
                     </Card>
