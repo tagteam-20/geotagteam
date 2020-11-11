@@ -19,15 +19,15 @@ class User extends Component {
 
     render() {
         return (
-            <div className='user'>
+            <div className='user' id='user-page'>
                 <div className='profile-info'>
                     <img src={this.state.profilePic} />
                     <h4>{this.state.username}</h4>
+                    <h4>Favorite/User Pins</h4>
                 </div>
-                <h4>Favorite/User Pins</h4>
                 {this.state.favorites.map(el => (
-                    <Accordion>
-                    <Card>
+                    <Accordion >
+                    <Card id='user-card'>
                         <Card.Header>
                             <Accordion.Toggle as={Button} variant="link" eventKey="0">
                                 {el.title}
@@ -42,18 +42,6 @@ class User extends Component {
                     </Card>
                     </Accordion>
                 ))}
-                {/* <Accordion>
-                    <Card>
-                        <Card.Header>
-                            <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                                Click me!
-                            </Accordion.Toggle>
-                        </Card.Header>
-                        <Accordion.Collapse eventKey="0">
-                            <Card.Body>Hello! I'm the body</Card.Body>
-                        </Accordion.Collapse>
-                    </Card>
-                </Accordion> */}
             </div>
         )
     }
