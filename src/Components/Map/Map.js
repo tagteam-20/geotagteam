@@ -114,7 +114,7 @@ export default function Map() {
                         }}
                     >
                         <div>
-                            <h2>Already in DB Gems</h2>
+                            <h2>{selected.title}</h2>
                         </div>
                     </InfoWindow>) : (
                         <InfoWindow
