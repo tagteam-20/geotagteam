@@ -39,7 +39,6 @@ const getImageUrl = async(type,base64Image) => {
     return imageUpload(`${type}`, buffer);
 }
 
-
 module.exports = {
     register: async (req,res)=>{
         const {username,password} = req.body;
