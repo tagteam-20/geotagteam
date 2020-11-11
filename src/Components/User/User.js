@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Accordion, Card, Button } from 'react-bootstrap';
+import { Accordion, Card, Button, Container } from 'react-bootstrap';
 import './User.scss'
 
 class User extends Component {
@@ -20,6 +20,7 @@ class User extends Component {
     render() {
         return (
             <div className='user' id='user-page'>
+                <Container id='user-container'>
                 <div className='profile-info'>
                     <img src={this.state.profilePic} />
                     <h4>{this.state.username}</h4>
@@ -29,19 +30,20 @@ class User extends Component {
                     <Accordion >
                     <Card id='user-card'>
                         <Card.Header>
-                            <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                            <Accordion.Toggle as={Button} variant="outline-primary" eventKey="0">
                                 {el.title}
                             </Accordion.Toggle>
                         </Card.Header>
                         <Accordion.Collapse eventKey="0">
                             <div className='single-pin'>
                                 <img src={el.img} />
-                                <Button>See More</Button>
+                                <Button variant="outline-primary">See More</Button>
                             </div>
                         </Accordion.Collapse>
                     </Card>
                     </Accordion>
                 ))}
+                </Container>
             </div>
         )
     }

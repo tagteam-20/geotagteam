@@ -65,8 +65,8 @@ class Auth extends Component {
                             <h5>Password</h5>
                             <input name='password' placeholder='password' type='password' onChange={this.handleInput} />
                             <div className='auth-buttons'>
-                                <Button variant="primary" onClick={this.loginUser}>Login</Button>
-                                <Button variant="primary" onClick={this.toggleView}>Register</Button>
+                                <Button variant="outline-primary" onClick={this.loginUser}>Login</Button>
+                                <Button variant="outline-primary" onClick={this.toggleView}>Register</Button>
                             </div>
                         </Card.Body>
                     </Card>
