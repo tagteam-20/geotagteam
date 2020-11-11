@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import { Button, Form, FormGroup, Container, Card } from 'react-bootstrap';
 import './RegisterForm.scss';
+import { withRouter } from 'react-router-dom';
+
 
 function RegisterForm(props){
     const [image, setImage] = useState({}),
@@ -16,6 +18,7 @@ function RegisterForm(props){
         axios.post('/api/register', fd)
             .then(res=>{
                 console.log(res.data);
+                props.history.push('/map');
             }).catch(err=>{
                 console.log(err);
             });
@@ -55,4 +58,4 @@ function RegisterForm(props){
     );
 }
 
-export default RegisterForm;
+export default withRouter(RegisterForm);
