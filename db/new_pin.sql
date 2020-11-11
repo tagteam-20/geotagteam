@@ -1,13 +1,13 @@
 INSERT INTO gem_pin(
-    Y,
-    X,
+    lat,
+    long,
     img,
     description,
     title,
     author
 )VALUES(
-    ${y},
-    ${x},
+    ${lat},
+    ${lng},
     ${img},
     ${description},
     ${title},

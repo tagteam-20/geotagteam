@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import {GoogleMap, useLoadScript, Marker, InfoWindow} from '@react-google-maps/api';
-import usePlacesAutocomplete, {getGeocode, getLatLng} from 'use-places-autocomplete';
-import {Combobox, ComboboxInput, ComboboxPopover, ComboboxList, ComboboxOption} from '@reach/combobox';
+import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
+import { Combobox, ComboboxInput, ComboboxPopover, ComboboxList, ComboboxOption } from '@reach/combobox';
 import mapStyles from './mapStyles';
 import axios from 'axios';
 import './Map.css';
@@ -22,7 +22,7 @@ const options = {
 };
 
 export default function Map() {
-    const {isLoaded, loadError} = useLoadScript({
+    const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
         libraries,
     });
@@ -34,7 +34,7 @@ export default function Map() {
         axios
             .get('/api/pins')
             .then(res => {
-                console.log(res.data)
+                //console.log(res.data)
                 getAllPins(res.data)
             })
             .catch(err => {
@@ -43,7 +43,7 @@ export default function Map() {
     }, [])
 
     const onMapClick = React.useCallback((event) => {
-        setMarkers(current => [...allPins, {
+        setMarkers(current => [{
             lat: event.latLng.lat(),
             lng: event.latLng.lng(),
             time: new Date(),
@@ -54,28 +54,31 @@ export default function Map() {
     const onMapLoad = React.useCallback((map) => {
         mapRef.current = map;
     }, []);
-    
-    const panTo = React.useCallback(({lat, lng}) => {
-        mapRef.current.panTo({lat, lng});
+
+    const panTo = React.useCallback(({ lat, lng }) => {
+        mapRef.current.panTo({ lat, lng });
         mapRef.current.setZoom(14);
     }, []);
 
-    if(loadError) return "Error loading maps";
-    if(!isLoaded) return "Loading Maps";
+    if (loadError) return "Error loading maps";
+    if (!isLoaded) return "Loading Maps";
 
-    const mappedPins = allPins.map((pin,ind) => { 
-        //console.log(pin.x);
-        return  <Marker 
-                    key={ind}
-                    position={{ lat: +pin.y, lng: +pin.x }}
-                    icon={{
-                        url: "/gem.png",
-                        scaledSize: new window.google.maps.Size(20, 20),
-                        origin: new window.google.maps.Point(0, 0),
-                        anchor: new window.google.maps.Point(10, 10),
-                    }}/>
+    const mappedPins = allPins.map((pin, ind) => {
+        console.log('pin', pin);
+        return <Marker
+            key={ind}
+            position={{ lat: +pin.lat, lng: +pin.lng }}
+            icon={{
+                url: "/gem.png",
+                scaledSize: new window.google.maps.Size(20, 20),
+                origin: new window.google.maps.Point(0, 0),
+                anchor: new window.google.maps.Point(10, 10),
+            }}
+            onClick={() => {
+                setSelected(pin);
+            }} />
     })
-    //console.log(mappedPins);
+    console.log('selected', selected);
 
     return (
         <div id='map'>
@@ -90,8 +93,8 @@ export default function Map() {
                 onLoad={onMapLoad}
             >
                 {markers.map((marker) => (
-                    <Marker 
-                        key={marker.time.toISOString()} 
+                    <Marker
+                        key={marker.time.toISOString()}
                         position={{ lat: marker.lat, lng: marker.lng }}
                         icon={{
                             url: "/gem.png",
@@ -104,27 +107,37 @@ export default function Map() {
                         }}
                     />
                 ))}
-                {selected ? (
+                {selected ? selected.id ? (
                     <InfoWindow
-                        position={{ lat: selected.lat, lng: selected.lng}}
+                        position={{ lat: +selected.lat, lng: +selected.lng }}
                         onCloseClick={() => {
                             setSelected(null);
                         }}
                     >
-                    <div>
-                        <h2>Title</h2>
-                    </div>
-                    </InfoWindow>) : null}
-                    {mappedPins}
+                        <div>
+                            <h2>{selected.title}</h2>
+                        </div>
+                    </InfoWindow>) : (
+                        <InfoWindow
+                            position={{ lat: +selected.lat, lng: +selected.lng }}
+                            onCloseClick={() => {
+                                setSelected(null);
+                            }}
+                        >
+                            <div>
+                                <h6>+Add Gem</h6>
+                            </div>
+                        </InfoWindow>) : null}
+                {mappedPins}
             </GoogleMap>
         </div>
     );
 }
 
-function Locate({panTo}) {
+function Locate({ panTo }) {
     return (
-        <button 
-            className='locate' 
+        <button
+            className='locate'
             onClick={() => {
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
@@ -132,7 +145,7 @@ function Locate({panTo}) {
                             lat: position.coords.latitude,
                             lng: position.coords.longitude,
                         });
-                    }, 
+                    },
                     () => null
                 );
             }}
@@ -143,25 +156,25 @@ function Locate({panTo}) {
 }
 
 function Search({ panTo }) {
-    const {ready, value, suggestions: {status, data}, setValue, clearSuggestions} = usePlacesAutocomplete({
+    const { ready, value, suggestions: { status, data }, setValue, clearSuggestions } = usePlacesAutocomplete({
         requestOptions: {
-            location: {lat: () => 40.233845, lng: () => -111.658531,},
+            location: { lat: () => 40.233845, lng: () => -111.658531, },
             radius: 200 * 1000,
         },
     });
 
     return (
         <div className='search'>
-            <Combobox 
+            <Combobox
                 onSelect={async (address) => {
                     setValue(address, false);
                     clearSuggestions();
 
                     try {
-                        const results = await getGeocode({address});
+                        const results = await getGeocode({ address });
                         const { lat, lng } = await getLatLng(results[0]);
-                        panTo({lat, lng});
-                    } catch(err) {
+                        panTo({ lat, lng });
+                    } catch (err) {
                         console.log('error!')
                     }
                 }}
@@ -171,13 +184,13 @@ function Search({ panTo }) {
                     id='searchbar' 
                     onChange={(e) => {
                         setValue(e.target.value);
-                    }} 
+                    }}
                     disabled={!ready}
                     placeholder='Enter an address'
                 />
                 <ComboboxPopover>
                     <ComboboxList>
-                        {status === 'OK' && 
+                        {status === 'OK' &&
                             data.map(({ id, description }) => (
                                 <ComboboxOption key={id} value={description} />
                             ))}
