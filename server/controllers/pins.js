@@ -58,7 +58,7 @@ module.exports = {
         img = 'https:///hidden-gems-application.s3-us-west-2.amazonaws.com/'+url;
 
         //upload to database
-        const data = {y,x,img,description,title,author};
+        const data = {lat: y,long: x,img,description,title,author};
         const db = req.app.get('db');
         const pin = await db.new_pin(data);
         res.status(200).send(pin[0]);
