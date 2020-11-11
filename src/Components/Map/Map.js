@@ -26,7 +26,7 @@ export default function Map() {
     const [selected, setSelected] = React.useState(null);
 
     const onMapClick = React.useCallback((event) => {
-        setMarkers(current => [...current, {
+        setMarkers(current => [{
             lat: event.latLng.lat(),
             lng: event.latLng.lng(),
             time: new Date(),
@@ -43,12 +43,6 @@ export default function Map() {
 
     return (
         <div>
-            <h1>
-                HiddenGems {" "} 
-                <span role="img" aria-label="gem">
-                    💎
-                </span>
-            </h1>
             <GoogleMap
                 mapContainerStyle={mapContainerStyle}
                 zoom={8}
@@ -72,6 +66,12 @@ export default function Map() {
                         }}
                     />
                 ))}
+
+                {selected ? (<InfoWindow>
+                    <div>
+                        <h2>Title</h2>
+                    </div>
+                </InfoWindow>) : null}
             </GoogleMap>
         </div>
     );
