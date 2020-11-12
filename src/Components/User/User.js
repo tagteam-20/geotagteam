@@ -14,7 +14,10 @@ class User extends Component {
     }
 
     componentDidMount(){
-        
+        axios.get('')
+            .then(res => {
+                this.setState({res: res.username, profilePic: res.img})
+            })
     }
 
     render() {
@@ -22,7 +25,7 @@ class User extends Component {
             <div className='user' id='user-page'>
                 <Container id='user-container'>
                 <div className='profile-info'>
-                    <img src={this.state.profilePic} />
+                    <img src={this.state.profilePic} className='user-pics' />
                     <h4>{this.state.username}</h4>
                     <h4>Favorite/User Pins</h4>
                 </div>
@@ -36,7 +39,7 @@ class User extends Component {
                         </Card.Header>
                         <Accordion.Collapse eventKey="0">
                             <div className='single-pin'>
-                                <img src={el.img} />
+                                <img src={el.img} className='user-pics' />
                                 <Button variant="outline-primary">See More</Button>
                             </div>
                         </Accordion.Collapse>
