@@ -81,7 +81,7 @@ module.exports = {
         res.status(200).send(favorites);
     },
     favorite: async(req,res)=>{
-        const pin_id = req.body;
+        const pin_id = req.body.id;
         const user_id = req.session.user.id;
         const db = req.app.get('db');
         await db.favorite({pin_id, user_id});

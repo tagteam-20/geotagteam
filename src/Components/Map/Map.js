@@ -83,7 +83,7 @@ export default function Map(props) {
     })
 
     const addFavorite = () =>{
-        axios.post(`/api/favorite`,{id: selected.id})
+        axios.post(`/api/favorite`,{id: +selected.id})
         .then(
             props.history.push(`/gem/${selected.id}`)
         )
