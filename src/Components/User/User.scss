@@ -1,6 +1,6 @@
 .user {
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 56px);
     background-image: url('./pietro-de-grandi-T7K4aEPoGGk-unsplash.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -43,6 +43,14 @@
     padding-top: 10px;
 }
 
-.user-pics {
+#profile-pic{
     border-radius: 0.25rem;
+    max-height: 100px;
+    max-width: 100px;
+}
+
+#gem-pics {
+    border-radius: 0.25rem;
+    max-height: 500px;
+    max-width: 80%;
 }
