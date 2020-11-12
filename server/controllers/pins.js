@@ -73,5 +73,11 @@ module.exports = {
         const db = req.app.get('db');
         const pin = await db.get_single_pin({id});
         res.status(200).send(pin[0]);
+    },
+    getUserFavorite: async(req,res)=>{
+        const id = req.params.id;
+        const db = req.app.get('db');
+        const favorites = await db.get_favorites({id});
+        res.status(200).send(favorites);
     }
 }

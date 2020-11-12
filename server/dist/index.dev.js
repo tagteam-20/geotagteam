@@ -15,6 +15,7 @@ var express = require('express'),
     authCont = require('./controllers/auth'),
     authMiddle = require('./middleware/auth'),
     pinCont = require('./controllers/pins'),
+    userCont = require('./controllers/user'),
     path = require('path');
 
 app.use(express.json()); //Set up sessions -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -43,6 +44,11 @@ app.post('/api/pin', upload.single('image'), authMiddle.loggedIn, pinCont.newPin
 app.get('/api/pins', pinCont.getAll); //Get all pins
 
 app.get('/api/pin/:id', pinCont.getSingle); //Get a single pin
+
+app.get('/api/favorites/:id', pinCont.getUserFavorite); //Get the favorite pins from a user
+//User
+
+app.get('/api/user/:id', userCont.getUser); //Get user data
 //Send react app -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 app.use(express["static"](__dirname + '/../build'));
