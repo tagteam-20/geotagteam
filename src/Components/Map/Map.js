@@ -5,6 +5,7 @@ import { Combobox, ComboboxInput, ComboboxPopover, ComboboxList, ComboboxOption 
 import mapStyles from './mapStyles';
 import axios from 'axios';
 import './Map.css';
+import {Link} from 'react-router-dom';
 
 const libraries = ['places'];
 const mapContainerStyle = {
@@ -69,7 +70,7 @@ export default function Map() {
             key={ind}
             position={{ lat: +pin.lat, lng: +pin.lng }}
             icon={{
-                url: "/gem.png",
+                url: "/diamond.png",
                 scaledSize: new window.google.maps.Size(20, 20),
                 origin: new window.google.maps.Point(0, 0),
                 anchor: new window.google.maps.Point(10, 10),
@@ -97,7 +98,7 @@ export default function Map() {
                         key={marker.time.toISOString()}
                         position={{ lat: marker.lat, lng: marker.lng }}
                         icon={{
-                            url: "/gem.png",
+                            url: "/diamond.png",
                             scaledSize: new window.google.maps.Size(20, 20),
                             origin: new window.google.maps.Point(0, 0),
                             anchor: new window.google.maps.Point(10, 10),
@@ -115,7 +116,10 @@ export default function Map() {
                         }}
                     >
                         <div>
-                            <h2>{selected.title}</h2>
+                            <h4>{selected.title}</h4>
+                            <img src={`${selected.img}`} alt='gem location' className='gem-picture'/>
+                            <Link to={`/gem/${selected.id}`}
+                                  ><p>View More</p></Link>
                         </div>
                     </InfoWindow>) : (
                         <InfoWindow
@@ -125,7 +129,7 @@ export default function Map() {
                             }}
                         >
                             <div>
-                                <h6>+Add Gem</h6>
+                                <Link to='/pinForm'><h6>+Add Gem</h6></Link>
                             </div>
                         </InfoWindow>) : null}
                 {mappedPins}
