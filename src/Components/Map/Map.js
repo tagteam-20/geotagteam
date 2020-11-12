@@ -5,7 +5,7 @@ import { Combobox, ComboboxInput, ComboboxPopover, ComboboxList, ComboboxOption 
 import mapStyles from './mapStyles';
 import axios from 'axios';
 import './Map.css';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const libraries = ['places'];
 const mapContainerStyle = {
@@ -41,7 +41,7 @@ export default function Map() {
             .catch(err => {
                 console.log(err)
             })
-    }, [])
+    },[])
 
     const onMapClick = React.useCallback((event) => {
         setMarkers(current => [{
@@ -117,9 +117,9 @@ export default function Map() {
                     >
                         <div>
                             <h4>{selected.title}</h4>
-                            <img src={`${selected.img}`} alt='gem location' className='gem-picture'/>
+                            <img src={`${selected.img}`} alt='gem location' className='gem-picture' />
                             <Link to={`/gem/${selected.id}`}
-                                  ><p>View More</p></Link>
+                            ><p>View More</p></Link>
                         </div>
                     </InfoWindow>) : (
                         <InfoWindow
@@ -183,9 +183,9 @@ function Search({ panTo }) {
                     }
                 }}
             >
-                <ComboboxInput 
+                <ComboboxInput
                     value={value}
-                    id='searchbar' 
+                    id='searchbar'
                     onChange={(e) => {
                         setValue(e.target.value);
                     }}
