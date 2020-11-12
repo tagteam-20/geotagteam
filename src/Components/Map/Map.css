@@ -16,7 +16,7 @@
   #searchbar {
     margin-left: 10px;
     width: 75%;
-    max-width: 500px;
+    max-width: 800px;
     border-radius: 0.25rem;
   }
 
@@ -36,3 +36,10 @@
   .gem-picture{
     height: 50px;
   }
+
+  #listbox--1 {
+    background: rgba(25,25,25,0.5);
+    color: white;
+    border-radius: 0.25rem;
+  }
+
