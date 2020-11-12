@@ -6,6 +6,7 @@ import mapStyles from './mapStyles';
 import axios from 'axios';
 import './Map.css';
 import { Link } from 'react-router-dom';
+import {connect} from 'react-redux';
 import {Helmet} from 'react-helmet-async';
 
 const libraries = ['places'];
@@ -23,7 +24,7 @@ const options = {
     zoomControl: true,
 };
 
-export default function Map() {
+export default function Map(props) {
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
         libraries,
@@ -80,6 +81,15 @@ export default function Map() {
                 setSelected(pin);
             }} />
     })
+
+    const addFavorite = () =>{
+        axios.post(`/api/favorite`,{id: +selected.id})
+        .then(
+            props.history.push(`/gem/${selected.id}`)
+        )
+        .catch(err => console.log(err))
+    }
+
     console.log('selected', selected);
 
     return (
@@ -124,6 +134,7 @@ export default function Map() {
                             <img src={`${selected.img}`} alt='gem location' className='gem-picture' />
                             <Link to={`/gem/${selected.id}`}
                             ><p>View More</p></Link>
+                            <p onClick={addFavorite}>Add to Favorite &#11088;</p>
                         </div>
                     </InfoWindow>) : (
                         <InfoWindow
