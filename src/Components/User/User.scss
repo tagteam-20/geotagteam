@@ -16,6 +16,7 @@
     padding-top: 10px;
     background: rgba(255,255,255,0.6);
     padding-bottom: 1px;
+    border-radius: 0.25rem;
 }
 
 .single-pin {
@@ -40,4 +41,8 @@
 
 #user-container {
     padding-top: 10px;
+}
+
+.user-pics {
+    border-radius: 0.25rem;
 }

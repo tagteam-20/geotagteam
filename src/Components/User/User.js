@@ -14,7 +14,17 @@ class User extends Component {
     }
 
     componentDidMount(){
-        
+        axios.get('/api/user/'+ this.props.match.params.id)
+            .then(res => {
+                console.log(res.data)
+                this.setState({res: res.data.username, profilePic: res.data.profile_pic})
+            })
+            .catch(err => console.log(err))
+        axios.get('/api/favorites/'+ this.props.match.params.id)
+            .then(res => {
+                this.setState({favorites: res.data})
+                console.log(this.state.favorites)
+            })
     }
 
     render() {
@@ -22,7 +32,7 @@ class User extends Component {
             <div className='user' id='user-page'>
                 <Container id='user-container'>
                 <div className='profile-info'>
-                    <img src={this.state.profilePic} />
+                    <img src={this.state.profilePic} className='user-pics' />
                     <h4>{this.state.username}</h4>
                     <h4>Favorite/User Pins</h4>
                 </div>
@@ -36,7 +46,7 @@ class User extends Component {
                         </Card.Header>
                         <Accordion.Collapse eventKey="0">
                             <div className='single-pin'>
-                                <img src={el.img} />
+                                <img src={el.img} className='user-pics' />
                                 <Button variant="outline-primary">See More</Button>
                             </div>
                         </Accordion.Collapse>
