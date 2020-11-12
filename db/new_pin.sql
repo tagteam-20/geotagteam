@@ -1,6 +1,6 @@
 INSERT INTO gem_pin(
     lat,
-    long,
+    lng,
     img,
     description,
     title,
