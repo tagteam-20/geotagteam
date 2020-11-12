@@ -35,6 +35,7 @@ app.post('/api/pin', upload.single('image'), authMiddle.loggedIn, pinCont.newPin
 app.get('/api/pins', pinCont.getAll); //Get all pins
 app.get('/api/pin/:id', pinCont.getSingle); //Get a single pin
 app.get('/api/favorites/:id', pinCont.getUserFavorite); //Get the favorite pins from a user
+app.post('/api/favorite', pinCont.favorite); //Favorite or unfavorite a pin
 
 //User
 app.get('/api/user/:id', userCont.getUser); //Get user data

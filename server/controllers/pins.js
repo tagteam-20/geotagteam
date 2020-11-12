@@ -79,5 +79,12 @@ module.exports = {
         const db = req.app.get('db');
         const favorites = await db.get_favorites({id});
         res.status(200).send(favorites);
+    },
+    favorite: async(req,res)=>{
+        const pin_id = req.body;
+        const user_id = req.session.user.id;
+        const db = req.app.get('db');
+        await db.favorite({pin_id, user_id});
+        res.sendStatus(200);
     }
 }
