@@ -119,7 +119,7 @@ export default function Map() {
                             <h4>{selected.title}</h4>
                             <img src={`${selected.img}`} alt='gem location' className='gem-picture'/>
                             <Link to={`/gem/${selected.id}`}
-                                  location={}><p>View More</p></Link>
+                                  ><p>View More</p></Link>
                         </div>
                     </InfoWindow>) : (
                         <InfoWindow
