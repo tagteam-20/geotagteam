@@ -38,7 +38,7 @@ class Auth extends Component {
 
     toggleView = () => {
         this.setState({registerToggle: !this.state.registerToggle})
-        console.log(this.state.registerToggle)
+        //console.log(this.state.registerToggle)
     }
     //function updates state of input boxes on change
     handleInput = (event) => {
