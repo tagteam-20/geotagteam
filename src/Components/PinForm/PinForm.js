@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { Button, Form, Col, Alert, Card, Container } from 'react-bootstrap';
 import './PinForm.scss';
+import {withRouter} from 'react-router-dom';
 
 const PinForm = (props)=>{
     const [y,setY] = useState(0.0),
@@ -97,4 +98,4 @@ const PinForm = (props)=>{
     )
 }
 
-export default PinForm;
+export default withRouter(PinForm);

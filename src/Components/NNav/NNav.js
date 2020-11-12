@@ -27,6 +27,7 @@ class NNav extends Component {
                 <Nav className="justify-content-end" style={{ width: "100%" }}>
                     <Nav.Link as={Link} to="/map" >&#128506; Map</Nav.Link>
                     <Nav.Link as={Link} to={"/user/"+ this.props.user.id} >&#128100; User</Nav.Link>
+                    <Nav.Link as={Link} to={"/new"} >&#x1F48E; Add Gem</Nav.Link>
                     <Button className='nav-button' onClick={this.logout}>Logout</Button>
                 </Nav>
             </Navbar.Collapse>
