@@ -13,8 +13,8 @@ export default (
         <Route path='/gem/:id' component={Gem} />
         <Route path='/map' component={Map} />
         <Route path='/user' component={User}/>
-        <Route path='/pinForm/:lat/:lng' component={PinForm}/>
+        <Route path='/new/:lat/:lng' component={PinForm}/>
         <Route path='/user/:id' component={User}/>
-        <Route path='/pinForm' component={PinForm}/>
+        <Route path='/new' component={PinForm}/>
     </Switch>
 )

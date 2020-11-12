@@ -129,7 +129,7 @@ export default function Map() {
                             }}
                         >
                             <div>
-                                <Link selectedGem={selected} to={`/pinForm/${selected.lat}/${selected.lng}`}><h6>+Add Gem</h6></Link>
+                                <Link selectedGem={selected} to={`/new/${selected.lat}/${selected.lng}`}><h6>+Add Gem</h6></Link>
                             </div>
                         </InfoWindow>) : null}
                 {mappedPins}
