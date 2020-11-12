@@ -14,5 +14,7 @@ export default (
         <Route path='/map' component={Map} />
         <Route path='/user' component={User}/>
         <Route path='/pinForm/:lat/:lng' component={PinForm}/>
+        <Route path='/user/:id' component={User}/>
+        <Route path='/pinForm' component={PinForm}/>
     </Switch>
 )
