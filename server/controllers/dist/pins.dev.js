@@ -106,8 +106,8 @@ module.exports = {
             img = 'https:///hidden-gems-application.s3-us-west-2.amazonaws.com/' + url; //upload to database
 
             data = {
-              y: y,
-              x: x,
+              lat: y,
+              lng: x,
               img: img,
               description: description,
               title: title,
@@ -169,6 +169,55 @@ module.exports = {
           case 6:
           case "end":
             return _context4.stop();
+        }
+      }
+    });
+  },
+  getUserFavorite: function getUserFavorite(req, res) {
+    var id, db, favorites;
+    return regeneratorRuntime.async(function getUserFavorite$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            id = req.params.id;
+            db = req.app.get('db');
+            _context5.next = 4;
+            return regeneratorRuntime.awrap(db.get_favorites({
+              id: id
+            }));
+
+          case 4:
+            favorites = _context5.sent;
+            res.status(200).send(favorites);
+
+          case 6:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    });
+  },
+  favorite: function favorite(req, res) {
+    var pin_id, user_id, db;
+    return regeneratorRuntime.async(function favorite$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            pin_id = req.body;
+            user_id = req.session.user.id;
+            db = req.app.get('db');
+            _context6.next = 5;
+            return regeneratorRuntime.awrap(db.favorite({
+              pin_id: pin_id,
+              user_id: user_id
+            }));
+
+          case 5:
+            res.sendStatus(200);
+
+          case 6:
+          case "end":
+            return _context6.stop();
         }
       }
     });

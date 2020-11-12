@@ -7,6 +7,7 @@ import axios from 'axios';
 import './Map.css';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
+import {Helmet} from 'react-helmet-async';
 
 const libraries = ['places'];
 const mapContainerStyle = {
@@ -93,6 +94,9 @@ export default function Map(props) {
 
     return (
         <div id='map'>
+            <Helmet>
+                <title>Hidden Gems - Map</title>
+            </Helmet>
             <Search panTo={panTo} />
             <Locate panTo={panTo} />
             <GoogleMap

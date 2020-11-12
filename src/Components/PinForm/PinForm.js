@@ -75,21 +75,21 @@ const PinForm = (props)=>{
                     </Form.Group>
                 </Form.Row>
                 <Form.Row>
-                    <Button variant='outline-success' type='submit'>Submit</Button>
-                    <Button
-                        className='locate'
-                        onClick={() => {
-                            navigator.geolocation.getCurrentPosition(
-                                (position) => {
-                                    setY(position.coords.latitude);
-                                    setX(position.coords.longitude);
-                                },
-                                () => null
-                            );
-                        }}
-                    >
-                        Use Current Location
-                    </Button>
+                    <Form.Group as={Col} id='form-buttons'>
+                        <Button variant='outline-success' type='submit'>Submit</Button>
+                        <Button
+                            variant='outline-primary'
+                            onClick={() => {
+                                navigator.geolocation.getCurrentPosition(
+                                    (position) => {
+                                        setY(position.coords.latitude);
+                                        setX(position.coords.longitude);
+                                    },
+                                    () => null
+                                );
+                            }}
+                        >Use Current Location</Button>
+                    </Form.Group>
                 </Form.Row>
             </Form>
             </Card>
