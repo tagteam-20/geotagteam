@@ -29,7 +29,7 @@ const PinForm = (props)=>{
         fd.append('title', title);
         axios.post('/api/pin', fd)
             .then(res=>{
-                console.log(res.data);
+                props.history.push('/map');
             }).catch(err=>{
                 setError({bool: true, message: err.response.data});
             })
@@ -75,6 +75,20 @@ const PinForm = (props)=>{
                 </Form.Row>
                 <Form.Row>
                     <Button variant='outline-success' type='submit'>Submit</Button>
+                    <Button
+                        className='locate'
+                        onClick={() => {
+                            navigator.geolocation.getCurrentPosition(
+                                (position) => {
+                                    setY(position.coords.latitude);
+                                    setX(position.coords.longitude);
+                                },
+                                () => null
+                            );
+                        }}
+                    >
+                        Use Current Location
+                    </Button>
                 </Form.Row>
             </Form>
             </Card>
