@@ -38,8 +38,8 @@ class User extends Component {
                 <Container id='user-container'>
                 <div className='profile-info'>
                     <img src={this.state.profilePic} id='profile-pic' />
-                    <h4>{this.state.username}</h4>
-                    <h4>Favorite/User Pins</h4>
+                    <h3>{this.state.username}</h3>
+                    <h5>Favorites - {this.state.favorites.length}</h5>
                 </div>
                 {this.state.favorites.map((el, i) => (
                     <Accordion key={i}>
