@@ -17,6 +17,7 @@
     margin-left: 10px;
     width: 75%;
     max-width: 500px;
+    border-radius: 0.25rem;
   }
 
   .locate {

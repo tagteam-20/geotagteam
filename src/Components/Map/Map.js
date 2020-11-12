@@ -69,7 +69,7 @@ export default function Map() {
             key={ind}
             position={{ lat: +pin.lat, lng: +pin.lng }}
             icon={{
-                url: "/gem.png",
+                url: "/diamond.png",
                 scaledSize: new window.google.maps.Size(20, 20),
                 origin: new window.google.maps.Point(0, 0),
                 anchor: new window.google.maps.Point(10, 10),
@@ -97,7 +97,7 @@ export default function Map() {
                         key={marker.time.toISOString()}
                         position={{ lat: marker.lat, lng: marker.lng }}
                         icon={{
-                            url: "/gem.png",
+                            url: "/diamond.png",
                             scaledSize: new window.google.maps.Size(20, 20),
                             origin: new window.google.maps.Point(0, 0),
                             anchor: new window.google.maps.Point(10, 10),
