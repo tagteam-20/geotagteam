@@ -1,0 +1,25 @@
+#gem-page {
+    width: 100%;
+    min-height: calc(100vh - 56px);
+    background-image: url('./sergey-pesterev-JV78PVf3gGI-unsplash.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+#gem-container {
+    display: flex;
+    justify-content: center;
+}
+
+#gem-card {
+    height: 400px;
+    max-width: 400px;
+    margin-top: 50px;
+}
+
+#gem-img {
+    max-height: 500px;
+    max-width: 500px;
+}
