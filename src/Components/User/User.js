@@ -14,9 +14,16 @@ class User extends Component {
     }
 
     componentDidMount(){
-        axios.get('')
+        axios.get('/api/user/'+ this.props.match.params.id)
             .then(res => {
-                this.setState({res: res.username, profilePic: res.img})
+                console.log(res.data)
+                this.setState({res: res.data.username, profilePic: res.data.profile_pic})
+            })
+            .catch(err => console.log(err))
+        axios.get('/api/favorites/'+ this.props.match.params.id)
+            .then(res => {
+                this.setState({favorites: res.data})
+                console.log(this.state.favorites)
             })
     }
 
