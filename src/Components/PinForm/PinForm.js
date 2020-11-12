@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import { Button, Form, Col, Alert } from 'react-bootstrap';
+import { Button, Form, Col, Alert, Card, Container } from 'react-bootstrap';
 
 const PinForm = (props)=>{
     const [y,setY] = useState(0.0),
@@ -12,11 +12,11 @@ const PinForm = (props)=>{
 
     
     useEffect(()=>{
-        if(props.y)
-            setY(props.y);
-        if(props.x)
-            setX(props.x);
-    }, [props.y,props.x]);
+        if(props.match.params.lat)
+            setY(props.match.params.lat);
+        if(props.match.params.lng)
+            setX(props.match.params.lng);
+    }, [props.match.params.lat,props.match.params.lng]);
 
     const submitForm = (e)=>{
         e.preventDefault();
@@ -41,6 +41,8 @@ const PinForm = (props)=>{
         </Alert>
     )
     return (
+        <Container>
+        <Card>
         <Form onSubmit={submitForm}>
             {error.bool ? err : null}
             <Form.Row>
@@ -73,6 +75,8 @@ const PinForm = (props)=>{
                 <Button variant='outline-success' type='submit'>Submit</Button>
             </Form.Row>
         </Form>
+        </Card>
+        </Container>
     )
 }
 
