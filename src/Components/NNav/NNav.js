@@ -3,7 +3,7 @@ import {withRouter, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Navbar, Button, Nav} from 'react-bootstrap';
 import axios from 'axios';
-import {clearUser} from '../../ducks/reducer';
+import {clearUser, getUser} from '../../ducks/reducer';
 import './NNav.scss';
 
 class NNav extends Component {
@@ -16,6 +16,20 @@ class NNav extends Component {
             }
             )
             .catch(err => console.log(err))
+    }
+
+    //Make sure user is logged in
+    componentDidMount(props){
+        if(!this.props.user.id){
+            axios.get('/api/session').then(res=>{
+                if(!res.data.id)
+                    this.props.history.push('/');
+                else
+                    getUser(res.data);
+            }).catch(err=>{
+                console.log(err);
+            });
+        }
     }
     
     render() {
@@ -38,4 +52,4 @@ class NNav extends Component {
 
 const mapStateToProps = reduxState => reduxState;
 
-export default connect(mapStateToProps, {clearUser})(withRouter(NNav))
+export default connect(mapStateToProps, {clearUser, getUser})(withRouter(NNav))
