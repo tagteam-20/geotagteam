@@ -30,13 +30,7 @@ const PinForm = (props)=>{
         fd.append('title', title);
         axios.post('/api/pin', fd)
             .then(res=>{
-<<<<<<< HEAD
-                console.log(res.data);
                 props.history.push('/map');
-
-=======
-                props.history.push('/map');
->>>>>>> main
             }).catch(err=>{
                 setError({bool: true, message: err.response.data});
             })
