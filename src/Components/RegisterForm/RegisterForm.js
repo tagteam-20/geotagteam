@@ -20,7 +20,7 @@ function RegisterForm(props){
                 console.log(res.data);
                 props.history.push('/map');
             }).catch(err=>{
-                console.log(err);
+                props.setError(err.response.data);
             });
         e.preventDefault();
     }

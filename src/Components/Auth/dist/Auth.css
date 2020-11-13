@@ -1,0 +1,41 @@
+.auth-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("./drew-saurus-VA4dNztZVlA-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+.errorBox {
+  width: 298px;
+  padding: 10px;
+}
+
+.auth-box {
+  height: 300px;
+}
+
+#trans-background {
+  background: rgba(25, 25, 25, 0.5);
+  color: white;
+}
+
+.auth-box-body {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
+
+.auth-buttons button {
+  margin-right: 10px;
+}
+
+.auth-input {
+  border-radius: 0.25rem;
+}

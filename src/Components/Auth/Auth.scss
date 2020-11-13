@@ -1,5 +1,6 @@
 .auth-main {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -10,6 +11,10 @@
     background-size: cover;
 }
 
+.errorBox{
+    width: 298px;
+    padding: 10px;
+}
 .auth-box {
     height: 300px;
 }
