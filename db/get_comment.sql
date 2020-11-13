@@ -1,0 +1,1 @@
+SELECT * FROM gem_rating WHERE id = ${id}

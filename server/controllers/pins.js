@@ -105,5 +105,19 @@ module.exports = {
         const db = req.app.get('db');
         await db.post_comment({pin_id, rating, comment, user_id});
         res.sendStatus(200);
+    },
+    editComment: async (req,res)=>{
+        const comment_id = req.params.id;
+        const comment = req.body.comment;
+        const user_id = req.session.user.id;
+        const db = req.app.get('db');
+        const comment = await db.get_comment({id: comment_id});
+        if(user_id !== comment[0].user_id){
+            return res.status(401).send('You cannot edit other people\'s comments');
+        }else{
+            await db.update_comment({comment, id: comment_id});
+            res.sendStatus(200);
+        }
+
     }
 }
