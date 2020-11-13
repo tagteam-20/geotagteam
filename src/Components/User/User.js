@@ -16,6 +16,14 @@ class User extends Component {
     }
 
     componentDidMount(){
+        this.updateProfile();
+    }
+    componentDidUpdate(prevProps){
+        if(this.props.match.params.id !== prevProps.match.params.id)
+            this.updateProfile();   
+    }
+
+    updateProfile(){
         axios.get('/api/user/'+ this.props.match.params.id)
             .then(res => {
                 console.log(res.data)
@@ -29,11 +37,13 @@ class User extends Component {
             })
     }
 
+    
+
     render() {
         return (
             <div className='user' id='user-page'>
                 <Helmet>
-                    <title>Hidden Gems - {this.state.username}</title>
+                    <title>HiddenGems | {this.state.username ? this.state.username : 'User page'}</title>
                 </Helmet>
                 <Container id='user-container'>
                 <div className='profile-info'>
