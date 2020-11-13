@@ -38,7 +38,7 @@ app.get('/api/favorites/:id', pinCont.getUserFavorite); //Get the favorite pins 
 app.post('/api/favorite', authMiddle.loggedIn, pinCont.favorite); //Favorite or unfavorite a pin
 app.get(`/api/comments/:id`, authMiddle.loggedIn, pinCont.getComments); //get comments
 app.post('/api/comment/:id', authMiddle.loggedIn, pinCont.postComment); //Post a comment
-app.put('/api/comment/:id', authMiddle, pinCont.editComment); //Edit a comment
+app.put('/api/comment/:id', authMiddle.loggedIn, pinCont.editComment); //Edit a comment
 
 //User
 app.get('/api/user/:id', userCont.getUser); //Get user data
