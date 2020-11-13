@@ -3,7 +3,7 @@ import Axios from 'axios';
 import { connect } from 'react-redux';
 import { getUser } from '../../ducks/reducer';
 import RegisterForm from '../RegisterForm/RegisterForm';
-import {Card, Button} from 'react-bootstrap';
+import {Card, Button, Alert} from 'react-bootstrap';
 import './Auth.scss';
 
 class Auth extends Component {
@@ -12,7 +12,11 @@ class Auth extends Component {
         this.state = {
             username: '',
             password: '',
-            registerToggle: false
+            registerToggle: false,
+            error: {
+                bool: false,
+                message: ''
+            }
         }
     }
     //function registers user
@@ -32,6 +36,8 @@ class Auth extends Component {
             .then(res => {
                 this.props.getUser(res.data)
                 this.props.history.push('/map')
+            }).catch(err=>{
+                this.setError(err.response.data);
             })
     }
 
@@ -45,10 +51,24 @@ class Auth extends Component {
         this.setState({ [event.target.name]: event.target.value })
     }
 
+    setError = (errMessage)=>{
+        this.setState({
+            error: {
+                bool: true,
+                message: errMessage
+            }
+        })
+    }
+
     render() {
         console.log(this.state);
         return (
             <div className='auth-main'>
+                {this.state.error.bool ? <Alert variant='danger' className='errorBox'>
+                                            <Alert.Heading>Error:</Alert.Heading>
+                                            <p>{this.state.error.message}</p>
+                                        </Alert> : 
+                null}
                 {!this.state.registerToggle ?
                     // <div>
                     //     <input name='username' placeholder='username' onChange={this.handleInput} />
@@ -70,7 +90,7 @@ class Auth extends Component {
                             </div>
                         </Card.Body>
                     </Card>
-                    : <RegisterForm toggleView={this.toggleView}/>}
+                    : <RegisterForm setError={this.setError} toggleView={this.toggleView}/>}
             </div>
 
 
