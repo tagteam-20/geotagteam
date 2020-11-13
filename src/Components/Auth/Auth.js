@@ -61,7 +61,7 @@ class Auth extends Component {
     }
 
     render() {
-        console.log(this.state);
+        //console.log(this.state);
         return (
             <div className='auth-main'>
                 {this.state.error.bool ? <Alert variant='danger' className='errorBox'>

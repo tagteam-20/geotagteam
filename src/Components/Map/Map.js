@@ -67,7 +67,7 @@ export default function Map(props) {
     if (!isLoaded) return "Loading Maps";
 
     const mappedPins = allPins.map((pin, ind) => {
-        console.log('pin', pin);
+        //console.log('pin', pin);
         return <Marker
             key={ind}
             position={{ lat: +pin.lat, lng: +pin.lng }}
@@ -90,7 +90,7 @@ export default function Map(props) {
         .catch(err => console.log(err))
     }
 
-    console.log('selected', selected);
+    //console.log('selected', selected);
 
     return (
         <div id='map'>
