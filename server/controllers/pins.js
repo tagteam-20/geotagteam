@@ -98,12 +98,26 @@ module.exports = {
         .catch(err => console.log(err))
     },
     postComment: async (req,res)=>{
-        const {pin_id} = req.params.id;
+        const pin_id = req.params.id;
         const {rating, comment} = req.body;
         const user_id = req.session.user.id
 
         const db = req.app.get('db');
-        await db.post_comment({pin_id, rating, comment, user_id});
-        res.sendStatus(200);
+        const comments = await db.post_comment({pin_id, rating, comment, user_id});
+        res.status(200).send(comments);
+    },
+    editComment: async (req,res)=>{
+        const comment_id = req.params.id;
+        const comment = req.body.comment;
+        const user_id = req.session.user.id;
+        const db = req.app.get('db');
+        const cComment = await db.get_comment({id: comment_id});
+        if(user_id !== cComment[0].user_id){
+            return res.status(401).send('You cannot edit other people\'s comments');
+        }else{
+            await db.update_comment({comment, id: comment_id});
+            res.sendStatus(200);
+        }
+
     }
 }

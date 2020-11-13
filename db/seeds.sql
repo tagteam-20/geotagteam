@@ -16,6 +16,7 @@ CREATE TABLE gem_pin(
 );
 
 CREATE TABLE gem_rating(
+    id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES gem_user(id) ON DELETE CASCADE,
     pin_id INTEGER REFERENCES gem_pin(id) ON DELETE CASCADE,
     rating VARCHAR(1),

@@ -9,3 +9,6 @@ INSERT INTO gem_rating(
     ${rating},
     ${comment}
 );
+
+SELECT * FROM gem_rating
+WHERE pin_id = ${pin_id};
