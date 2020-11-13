@@ -1,0 +1,1 @@
+select * from gem_rating where pin_id = ${id};

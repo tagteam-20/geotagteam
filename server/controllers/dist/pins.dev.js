@@ -203,7 +203,7 @@ module.exports = {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
-            pin_id = req.body.id;
+            pin_id = req.body;
             user_id = req.session.user.id;
             db = req.app.get('db');
             _context6.next = 5;
@@ -218,35 +218,6 @@ module.exports = {
           case 6:
           case "end":
             return _context6.stop();
-        }
-      }
-    });
-  },
-  postComment: function postComment(req, res) {
-    var pin_id, _req$body2, rating, comment, user_id, db;
-
-    return regeneratorRuntime.async(function postComment$(_context7) {
-      while (1) {
-        switch (_context7.prev = _context7.next) {
-          case 0:
-            pin_id = req.params.id.pin_id;
-            _req$body2 = req.body, rating = _req$body2.rating, comment = _req$body2.comment;
-            user_id = req.session.user.id;
-            db = req.app.get('db');
-            _context7.next = 6;
-            return regeneratorRuntime.awrap(db.post_comment({
-              pin_id: pin_id,
-              rating: rating,
-              comment: comment,
-              user_id: user_id
-            }));
-
-          case 6:
-            res.sendStatus(200);
-
-          case 7:
-          case "end":
-            return _context7.stop();
         }
       }
     });
