@@ -14,7 +14,7 @@ class Gem extends Component {
             author_id: 0,
             author_username: '',
             author_profile_pic: '',
-            avg-rating: 0,
+            avg_rating: 0,
             rating: 0
         }
         this.changeRating = this.changeRating.bind(this)

@@ -6,7 +6,7 @@ import mapStyles from './mapStyles';
 import axios from 'axios';
 import './Map.css';
 import { Link } from 'react-router-dom';
-import {connect} from 'react-redux';
+//import {connect} from 'react-redux';
 import {Helmet} from 'react-helmet-async';
 
 const libraries = ['places'];
