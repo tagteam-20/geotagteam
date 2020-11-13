@@ -50,7 +50,8 @@ class Gem extends Component {
         axios
         .post('/api/comment/' + this.props.match.params.id, {comment, rating})
         .then((res) => {
-            this.setState({comments: res.data})
+            this.setState({comments: res.data, comment: '', rating: 0})
+    
             console.log(res.data)
         })
     }
@@ -70,11 +71,10 @@ class Gem extends Component {
                         <Card.Img src={this.state.img} id='gem-img'/>
                         <Card.Title id='pin-info'><span>{this.state.title}
                              &nbsp;@{this.state.author_username}</span>
-                                <span id='star-span'>
+                                <span className='star-span'>
                                 <StarRatings
-                                    rating={this.state.rating}
+                                    rating={this.state.avg_rating}
                                     starRatedColor="gold"
-                                    //   changeRating={this.changeRating}
                                     numberOfStars={5}
                                     name='rating'
                                     starDimension='20'
@@ -89,8 +89,21 @@ class Gem extends Component {
                         <Form onSubmit={this.postComment}>
                             <Form.Row>
                                 <Form.Group>
-                                    <Form.Label>Post a comment</Form.Label>
-                                    <Form.Control name='comment' value={this.state.comment} onChange={this.handleInput} id='comment-text' as='textarea' rows={4} cols={50}/>
+                                    <Form.Label id='form-label'><span>Post a comment</span>
+                                        <span className='star-span'>
+                                            <StarRatings
+                                                rating={this.state.rating}
+                                                starRatedColor="gold"
+                                                changeRating={this.changeRating}
+                                                numberOfStars={5}
+                                                name='rating'
+                                                starDimension='20'
+                                                starSpacing='1px'
+                                                starHoverColor='blue'
+                                            />
+                                        </span>
+                                    </Form.Label>
+                                    <Form.Control name='comment' value={this.state.comment} onChange={this.handleInput} id='comment-text' as='textarea' rows={4} cols={50} required />
                                 </Form.Group>
                             </Form.Row>
                             <Form.Row>
