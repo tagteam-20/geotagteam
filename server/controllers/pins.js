@@ -86,5 +86,14 @@ module.exports = {
         const db = req.app.get('db');
         await db.favorite({pin_id, user_id});
         res.sendStatus(200);
+    },
+    postComment: async (req,res)=>{
+        const {pin_id} = req.params.id;
+        const {rating, comment} = req.body;
+        const user_id = req.session.user.id
+
+        const db = req.app.get('db');
+        await db.post_comment({pin_id, rating, comment, user_id});
+        res.sendStatus(200);
     }
 }

@@ -47,7 +47,9 @@ app.get('/api/pin/:id', pinCont.getSingle); //Get a single pin
 
 app.get('/api/favorites/:id', pinCont.getUserFavorite); //Get the favorite pins from a user
 
-app.post('/api/favorite', pinCont.favorite); //Favorite or unfavorite a pin
+app.post('/api/favorite', authMiddle.loggedIn, pinCont.favorite); //Favorite or unfavorite a pin
+
+app.post('/api/comment/:id', authMiddle.loggedIn, pinCont.postComment); //Post a comment
 //User
 
 app.get('/api/user/:id', userCont.getUser); //Get user data
