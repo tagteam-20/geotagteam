@@ -221,5 +221,15 @@ module.exports = {
         }
       }
     });
+  },
+  getComments: (req,res) => {
+      const {id} = req.params;
+      const db = req.app.get('db');
+
+      db.get_all_comments({id})
+      .then(comments => {
+        res.status(200).send(comments)
+      })
+      .catch(err => console.log(err))
   }
 };
