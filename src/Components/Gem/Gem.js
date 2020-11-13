@@ -10,12 +10,14 @@ class Gem extends Component {
         this.state = {
             img: '',
             description: '',
+            comment: '',
             title: '',
             author_id: 0,
             author_username: '',
             author_profile_pic: '',
-            avg-rating: 0,
-            rating: 0
+            avg_rating: 0,
+            rating: 0,
+            isEditing: false
         }
         this.changeRating = this.changeRating.bind(this)
     }
@@ -24,6 +26,28 @@ class Gem extends Component {
         axios
         .get('/api/pin/' + this.props.match.params.id)
         .then(res => {
+            this.setState(res.data)
+        })
+    }
+
+    handleToggle = () => {
+        this.setState({
+            isEditing: !this.state.isEditing
+        })
+    }
+
+    handleInput = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
+    postComment = () => {
+        const {comment, rating} = this.state;
+
+        axios
+        .post('/api/comment/' + this.props.match.params.id)
+        .then(() => {
             this.setState(res.data)
         })
     }

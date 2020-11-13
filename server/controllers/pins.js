@@ -98,7 +98,7 @@ module.exports = {
         .catch(err => console.log(err))
     },
     postComment: async (req,res)=>{
-        const {pin_id} = req.params.id;
+        const pin_id = req.params.id;
         const {rating, comment} = req.body;
         const user_id = req.session.user.id
 
