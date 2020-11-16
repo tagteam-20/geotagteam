@@ -39,6 +39,7 @@ app.post('/api/favorite', authMiddle.loggedIn, pinCont.favorite); //Favorite or 
 app.get(`/api/comments/:id`, authMiddle.loggedIn, pinCont.getComments); //get comments
 app.post('/api/comment/:id', authMiddle.loggedIn, pinCont.postComment); //Post a comment
 app.put('/api/comment/:id', authMiddle.loggedIn, pinCont.editComment); //Edit a comment
+app.delete(`/api/deletecomment/:id`, authMiddle.loggedIn, pinCont.deleteComment) //Delete a comment
 
 //User
 app.get('/api/user/:id', userCont.getUser); //Get user data
