@@ -23,16 +23,34 @@ class Gem extends Component {
         this.changeRating = this.changeRating.bind(this)
     }
 
+    getComments = ()=>{
+        axios.get('/api/comments/' + this.props.match.params.id)
+            .then((res) => {
+                this.setState({ comments: res.data, comment: '', rating: 0 })
+                console.log(res.data)
+                let count = 0;
+                const total = res.data.reduce((acc,value)=>{
+                    if(value.rating){
+                        count++
+                    }
+                    return acc+(+value.rating);
+                },0);
+                console.log('total: '+total);
+                console.log('Gem rating: '+total/count)
+                this.setState({avg_rating: (total/count)});
+            }).catch(err=>{
+                console.log(err);
+            })
+        
+    }
+
     componentDidMount() {
         axios
             .get('/api/pin/' + this.props.match.params.id)
             .then(res => {
                 this.setState(res.data)
             })
-        axios.get(`/api/comments/${this.props.match.params.id}`)
-        .then(res =>{
-            this.setState({comments: res.data})
-        })
+        this.getComments();
     }
 
     handleToggle = () => {
@@ -55,8 +73,7 @@ class Gem extends Component {
             .post('/api/comment/' + this.props.match.params.id, { comment, rating })
             .then((res) => {
                 this.setState({ comments: res.data, comment: '', rating: 0 })
-
-                console.log(res.data)
+                this.getComments();
             })
     }
 
@@ -139,7 +156,9 @@ class Gem extends Component {
                             </Form.Row>
                         </Form>
                     </Card>
-                    {mappedComments}
+                    <div id='commentContainer'>
+                        {mappedComments}
+                    </div>
                 </Container>
             </div>
         )

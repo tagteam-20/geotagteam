@@ -84,3 +84,13 @@
     display: flex;
     justify-content: space-between;
 }
+
+#commentContainer{
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    justify-content: center;
+    padding-bottom: 40px;
+}
