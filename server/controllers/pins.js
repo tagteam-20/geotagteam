@@ -122,12 +122,8 @@ module.exports = {
     },
     deleteComment: async (req,res) => {
         const id = req.params.id;
-        const db = rew.app.get('db');
-
-        db.delete_comment({id})
-        .then(comments =>{
-            res.status(200).send(comments)
-        })
-        .catch(err => console.log(err))
+        const db = req.app.get('db');
+        await db.delete_comment({id});
+        return res.sendStatus(200);
     }
 }
