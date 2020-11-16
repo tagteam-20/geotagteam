@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Container, Card, Button, Form } from 'react-bootstrap';
 import StarRatings from 'react-star-ratings';
 import './Gem.scss';
+import {connect} from 'react-redux';
 
 class Gem extends Component {
     constructor() {
@@ -82,6 +83,15 @@ class Gem extends Component {
             rating: newRating
         });
     }
+
+    deleteComment = (id)=>{
+        axios.delete(`/api/comment/${id}`)
+            .then(res=>{
+                this.getComments();
+            }).catch(err=>{
+                console.log(err);
+            });
+    }
     
     render() {
         console.log(this.state.comment);
@@ -92,6 +102,7 @@ class Gem extends Component {
             return <Card key={ind} className='comment-display' style={{background: "rgba(25,25,25,0.5)"}}>
                 <div className='comment-header'>
                         <Card.Title><img src ={comment.profile_pic} className='comment-img'/> @{comment.username} </Card.Title>
+                        <span>
                         <StarRatings className='comment-stars'
                                     rating={+comment.rating}
                                     starRatedColor="gold"
@@ -101,6 +112,11 @@ class Gem extends Component {
                                     starSpacing='1px'
                                     starHoverColor='blue'
                                 />
+                        {comment.comment_user_id === this.props.user.id ? 
+                            <button type='button' class='close' aria-label='Close' onClick={e=>this.deleteComment(comment.id)}>
+                                <span aria-hidden='true'>&times;</span>
+                            </button> : null}
+                        </span>
                 </div>
                         <Card.Text>{comment.comment}</Card.Text>
                    </Card>
@@ -146,7 +162,8 @@ class Gem extends Component {
                                             />
                                         </span>
                                     </Form.Label>
-                                    <Form.Control name='comment' value={this.state.comment} onChange={this.handleInput} id='comment-text' as='textarea' rows={4} cols={50} required />
+                                    <Form.Control maxlength='250' name='comment' value={this.state.comment} onChange={this.handleInput} id='comment-text' as='textarea' rows={4} cols={50} required/>
+                                    <Form.Text className='text-muted'>{this.state.comment.length}/250</Form.Text>
                                 </Form.Group>
                             </Form.Row>
                             <Form.Row>
@@ -165,4 +182,5 @@ class Gem extends Component {
     }
 }
 
-export default Gem;
+const mapStateToProps = reduxState => reduxState;
+export default connect(mapStateToProps)(Gem);
