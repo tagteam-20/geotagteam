@@ -3,7 +3,7 @@ import Axios from 'axios';
 import { connect } from 'react-redux';
 import { getUser } from '../../ducks/reducer';
 import RegisterForm from '../RegisterForm/RegisterForm';
-import {Card, Button, Alert} from 'react-bootstrap';
+import {Card, Button, Alert, Form} from 'react-bootstrap';
 import './Auth.scss';
 
 class Auth extends Component {
@@ -30,8 +30,9 @@ class Auth extends Component {
     // }
 
     //login function
-    loginUser = () => {
+    loginUser = (e) => {
         const { username, password } = this.state;
+        e.preventDefault();
         Axios.post('/api/login', { username, password })
             .then(res => {
                 this.props.getUser(res.data)
@@ -79,16 +80,23 @@ class Auth extends Component {
                     //     </div>
                     // </div> 
                     <Card border='dark' style={{ width: '18rem' }}  id='trans-background' className='auth-box'>
-                        <Card.Body className='auth-box-body'>
-                            <h5>Username</h5>
-                            <input name='username' placeholder='username' onChange={this.handleInput} className='auth-input' />
-                            <h5>Password</h5>
-                            <input name='password' placeholder='password' type='password' onChange={this.handleInput} className='auth-input' />
-                            <div className='auth-buttons'>
-                                <Button variant="outline-primary" onClick={this.loginUser}>Login</Button>
-                                <Button variant="outline-primary" onClick={this.toggleView}>Register</Button>
-                            </div>
-                        </Card.Body>
+                        <Form onSubmit={this.loginUser}>
+                        <Card.Header>Login</Card.Header>
+                            <Card.Body className='auth-box-body'>
+                                <Form.Group id='username-inp'>
+                                    <Form.Label htmlFor='username'>Username:</Form.Label>
+                                    <Form.Control type='text' name='username' placeholder='Username' value={this.state.username} onChange={this.handleInput} className='auth-input'/> 
+                                </Form.Group>
+                                <Form.Group id='password-inp'>
+                                    <Form.Label htmlFor='password' >Password: </Form.Label>
+                                    <Form.Control name='password' type='password' placeholder='Password' value={this.state.password} onChange={this.handleInput} className='auth-input'/>
+                                </Form.Group> 
+                                <div className='auth-buttons'>
+                                    <Button type='submit' variant="outline-primary">Login</Button>
+                                    <Button variant="outline-primary" onClick={this.toggleView}>Register</Button>
+                                </div>
+                            </Card.Body>
+                        </Form>
                     </Card>
                     : <RegisterForm setError={this.setError} toggleView={this.toggleView}/>}
             </div>

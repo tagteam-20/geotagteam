@@ -38,7 +38,10 @@ class Gem extends Component {
                 },0);
                 console.log('total: '+total);
                 console.log('Gem rating: '+total/count)
-                this.setState({avg_rating: (total/count)});
+                if((total/count) <= 5 && (total/count) >= 0)
+                    this.setState({avg_rating: (total/count)});
+                else
+                    this.setState({avg_rating: 0});
             }).catch(err=>{
                 console.log(err);
             })

@@ -37,7 +37,7 @@
     height: 50px;
   }
 
-  #listbox--1 {
+  ul{
     background: rgba(25,25,25,0.5);
     color: white;
     border-radius: 0.25rem;
