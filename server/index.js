@@ -29,6 +29,7 @@ app.post('/api/register', upload.single('image'), authCont.register); //Register
 app.post('/api/login', authCont.login); //Login
 app.get('/api/session', authCont.getSession); //Get session
 app.get('/api/logout', authCont.logout); //Logout
+app.put('/api/profilePic/:id', upload.single('newProfilePicture'), authMiddle.loggedIn, authCont.updateProfilePic); //Update profile picture
 
 //Pins
 app.post('/api/pin', upload.single('image'), authMiddle.loggedIn, pinCont.newPin); //Post a new pin

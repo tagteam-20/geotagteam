@@ -98,5 +98,25 @@ module.exports = {
     logout: async (req,res)=>{
         req.session.destroy();
         res.sendStatus(200);
+    },
+    updateProfilePic: async (req,res)=>{
+        const db = req.app.get('db'); //db
+        const id = req.app.params.id;
+        let profile_pic = '';
+        if(req.file){
+            const currentTime = new Date().getTime();
+            const url = `profile-pictures/${currentTime}.jpeg`;
+            const buff = await imagemin.buffer(req.file.buffer, {
+                plugins: [
+                    imageminMozjpeg({quality: 75})
+                ]
+            });
+            await getImageUrl(url, buff.toString('base64'));
+            profile_pic = 'https:///hidden-gems-application.s3-us-west-2.amazonaws.com/'+url;
+        }else{
+            return res.status(406).send('No images :(');
+        }
+        await db.update_profile_pic({id, profile_pic});
+        res.sendStatus(200);
     }
 }
