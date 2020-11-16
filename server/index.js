@@ -36,10 +36,10 @@ app.get('/api/pins', pinCont.getAll); //Get all pins
 app.get('/api/pin/:id', pinCont.getSingle); //Get a single pin
 app.get('/api/favorites/:id', pinCont.getUserFavorite); //Get the favorite pins from a user
 app.post('/api/favorite', authMiddle.loggedIn, pinCont.favorite); //Favorite or unfavorite a pin
-app.get(`/api/comments/:id`, authMiddle.loggedIn, pinCont.getComments); //get comments
+app.get(`/api/comments/:id`, pinCont.getComments); //get comments
 app.post('/api/comment/:id', authMiddle.loggedIn, pinCont.postComment); //Post a comment
 app.put('/api/comment/:id', authMiddle.loggedIn, pinCont.editComment); //Edit a comment
-app.delete(`/api/deletecomment/:id`, authMiddle.loggedIn, pinCont.deleteComment) //Delete a comment
+app.delete(`/api/comment/:id`, authMiddle.loggedIn, pinCont.deleteComment) //Delete a comment
 
 //User
 app.get('/api/user/:id', userCont.getUser); //Get user data

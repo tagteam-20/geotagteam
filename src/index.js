@@ -4,22 +4,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
-import {HashRouter} from 'react-router-dom';
+import {HashRouter, BrowserRouter} from 'react-router-dom';
 import store from './ducks/store';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
+const Router = process.env.NODE_ENV === 'development' ? HashRouter : BrowserRouter;
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <HashRouter>
+      <Router>
         <HelmetProvider>
           <Helmet>
             <title>Hidden Gems</title>
           </Helmet>
           <App />
         </HelmetProvider>
-      </HashRouter>
+      </Router>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
