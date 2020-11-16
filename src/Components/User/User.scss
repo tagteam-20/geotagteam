@@ -20,6 +20,14 @@
     border-radius: 0.25rem;
 }
 
+#update-button {
+    margin-top: 5px;
+    border: none;
+    background: none;
+    text-decoration: underline;
+    color: black;
+}
+
 .single-pin {
     display: flex;
     flex-direction: column;
@@ -54,4 +62,9 @@
     border-radius: 0.25rem;
     max-height: 300px;
     max-width: 80%;
+}
+
+.update-form-buttons {
+    margin-top: 10px;
+    margin-right: 10px;
 }

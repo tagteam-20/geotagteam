@@ -101,7 +101,7 @@ module.exports = {
     },
     updateProfilePic: async (req,res)=>{
         const db = req.app.get('db'); //db
-        const id = req.app.params.id;
+        const id = req.params.id;
         let profile_pic = '';
         if(req.file){
             const currentTime = new Date().getTime();
