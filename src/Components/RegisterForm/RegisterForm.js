@@ -3,6 +3,9 @@ import axios from 'axios';
 import { Button, Form, FormGroup, Container, Card } from 'react-bootstrap';
 import './RegisterForm.scss';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getUser } from '../../ducks/reducer';
+
 
 
 function RegisterForm(props){
@@ -18,6 +21,7 @@ function RegisterForm(props){
         axios.post('/api/register', fd)
             .then(res=>{
                 console.log(res.data);
+                props.getUser(res.data)
                 props.history.push('/map');
             }).catch(err=>{
                 props.setError(err.response.data);
@@ -58,4 +62,5 @@ function RegisterForm(props){
     );
 }
 
-export default withRouter(RegisterForm);
+const mapMyStateToProps = reduxState => reduxState;
+export default connect(mapMyStateToProps, { getUser })(withRouter(RegisterForm));
