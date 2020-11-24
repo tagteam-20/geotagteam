@@ -29,20 +29,16 @@ class User extends Component {
     updateProfile() {
         axios.get('/api/user/' + this.props.match.params.id)
             .then(res => {
-                console.log(res.data)
                 this.setState({ username: res.data.username, profilePic: res.data.profile_pic })
             })
             .catch(err => console.log(err))
         axios.get('/api/favorites/' + this.props.match.params.id)
             .then(res => {
                 this.setState({ favorites: res.data })
-                console.log(this.state.favorites)
             })
     }
 
     submitFunction = (e) => {
-        console.log(this.state)
-        console.log(this.state.newProfilePicture)
         e.preventDefault();
         const fd = new FormData();
         fd.append('newProfilePicture', this.state.newProfilePicture, this.state.newProfilePicture.name);
