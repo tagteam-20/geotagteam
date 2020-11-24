@@ -11,7 +11,6 @@ class NNav extends Component {
         axios.get('/api/logout')
             .then(res => {
                 this.props.clearUser();
-                console.log(this.props.user);
                 this.props.history.push('/')
             }
             )
@@ -22,10 +21,11 @@ class NNav extends Component {
     componentDidMount(props){
         if(!this.props.user.id){
             axios.get('/api/session').then(res=>{
+                console.log(res.data);
                 if(!res.data.id)
                     this.props.history.push('/');
                 else
-                    getUser(res.data);
+                    this.props.getUser(res.data);
             }).catch(err=>{
                 console.log(err);
             });

@@ -28,7 +28,6 @@ class Gem extends Component {
         axios.get('/api/comments/' + this.props.match.params.id)
             .then((res) => {
                 this.setState({ comments: res.data, comment: '', rating: 0 })
-                console.log(res.data)
                 let count = 0;
                 const total = res.data.reduce((acc,value)=>{
                     if(value.rating){
@@ -36,8 +35,6 @@ class Gem extends Component {
                     }
                     return acc+(+value.rating);
                 },0);
-                console.log('total: '+total);
-                console.log('Gem rating: '+total/count)
                 if((total/count) <= 5 && (total/count) >= 0)
                     this.setState({avg_rating: (total/count)});
                 else
@@ -97,7 +94,6 @@ class Gem extends Component {
     }
     
     render() {
-        console.log(this.state.comment);
         let totalRating = 0;
         
 

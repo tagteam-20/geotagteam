@@ -5,7 +5,6 @@ const initialState = {
 const GET_USER = 'GET_USER';
 const CLEAR_USER = 'CLEAR_USER';
 export function getUser(user){
-    console.log(user)
     return {
         type: GET_USER,
         payload: user
@@ -23,7 +22,6 @@ export default function (state = initialState, action){
     const {type,payload} = action;
     switch(type){
         case GET_USER:
-            console.log(payload)
             return {user: payload};
         case CLEAR_USER:
             return {...state, user: payload};
